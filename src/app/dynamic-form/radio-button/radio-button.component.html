@@ -1,11 +1,13 @@
 <div>
-  <div class="custom-control custom-radio">
-    <input id="male" formControlName="gender" type="radio" class="custom-control-input" value="male" name="gender" ngModel>
-    <label class="custom-control-label" for="male">Male</label>
-  </div>
+  <button [formControl]="addControl" (click)="onClick()" name="addControl" ngDefaultControl>Add Label</button>
+</div>
 
-  <div class="custom-control custom-radio">
-    <input id="female" type="radio" formControlName="gender" class="custom-control-input" value="female" name="gender" ngModel>
-    <label class="custom-control-label" for="female">Female</label>
+<div [formGroup]="radioGroup">
+  <div class="">
+    <label>Question:</label>
+    <input formControlName="radioName" type="text" class="">
+  </div>
+  <div formArrayName="options" *ngFor="let option of options.controls; let i = index">
+   <label>Name:</label> <input type="text" [formControlName]="i" >
   </div>
 </div>

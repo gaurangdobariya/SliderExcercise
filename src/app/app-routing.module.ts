@@ -19,6 +19,10 @@ const routes: Routes = [
   {
     path : 'dynamicform',
     loadChildren: ()=>  import('./dynamic-form/dynamic-form.module').then(mod => mod.DynamicFormModule)
+  },
+  {
+    path : 'createform',
+    loadChildren: ()=>  import('./form-module/form-module.module').then(mod => mod.FormModuleModule)
   }
 ];
 

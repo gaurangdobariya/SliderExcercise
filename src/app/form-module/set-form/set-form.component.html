@@ -1,0 +1,17 @@
+<div class="form-group" [formGroup]="form">
+  <div *ngFor="let data of formData,let i=index">
+    <div>
+      Question: {{data.question}}
+    </div>
+    <div *ngIf="data.type=='radio'">
+      <app-set-radio [field]="data" [form]="form"></app-set-radio>
+    </div>
+
+    <div *ngIf="data.type=='text'">
+
+      <app-set-text [field]="data" [form]="form"></app-set-text>
+    </div>
+  </div>
+
+  <button type="submit" (click)="onSubmit()">Submit</button>
+</div>

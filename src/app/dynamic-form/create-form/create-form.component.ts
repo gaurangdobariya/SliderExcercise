@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormArray, FormControl } from '@angular/forms';
 import { TouchSequence } from 'selenium-webdriver';
 import { log } from 'util';
+import { DynamicFormService } from '../service/dynamic-form.service';
+import { Route } from '@angular/compiler/src/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-create-form',
@@ -11,12 +14,13 @@ import { log } from 'util';
 export class CreateFormComponent implements OnInit {
   dynamicForm: FormGroup
   manageForm: FormGroup
-  radio: FormControl
   controls: string[]
-  constructor(private fb: FormBuilder) { }
+  change: boolean = false;
+  feilds = []
+  constructor(private fb: FormBuilder, private dpService: DynamicFormService, private route: Router) { }
 
   ngOnInit() {
-    this.controls = ['Text-Box', 'radio'];
+    this.controls = ['textbox', 'radio'];
 
     this.manageForm = this.fb.group({
       options: ['']
@@ -26,7 +30,7 @@ export class CreateFormComponent implements OnInit {
       name: [''],
       components: this.fb.array([])
     });
-   
+
 
   }
 
@@ -34,18 +38,55 @@ export class CreateFormComponent implements OnInit {
     return this.dynamicForm.get('components') as FormArray;
   }
   onChangeControl(event) {
-    console.log(event.target.value);
+    this.change = !this.change;
     if (event.target.value == 'radio') {
-     this.randerRadio(); 
-    } else {
+      this.renderRadio();
 
+    } else if (event.target.value == 'textbox') {
+      this.renderText();
     }
+  }
+  renderRadio() {
+    this.components.push(this.fb.group({
+      type: 'radio'
+    }));
+  }
+
+  renderText() {
+    this.components.push(this.fb.group({
+      type: 'text'
+    }));
+  }
+
+  addRadio(event, index) {
+    this.feilds.splice(index, 1, {
+      "type": "radio",
+      "question": event.radioName,
+      "labels": event.options
+    });
+
 
   }
-  randerRadio(){
-    this.components.push(this.fb.group({
-      type:'radio'
-    }));
-  } 
+
+  addText(event, index) {
+    this.feilds.splice(index, 1, {
+      "type": "text",
+      "question": event,
+    });
+
+  }
+
+  onSubmit() {
+    this.change = !this.change;
+    this.dpService.addFormData(this.feilds)
+    console.log(this.feilds);
+    
+    setTimeout(()=>{
+      this.route.navigate(['createform'])
+    },2000)
+   
+
+
+  }
 
 }
