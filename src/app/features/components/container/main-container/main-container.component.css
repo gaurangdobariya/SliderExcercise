@@ -1,0 +1,13 @@
+.main-container{
+    display: flex;
+    /* margin-top: 12px; */
+}
+.sidebar{
+    width:20%;
+    height : calc(100vh - 132px);
+    background-color: #a2306b;
+}
+.main-content{
+    margin-top: 25px;
+    margin-left: 25px;
+}

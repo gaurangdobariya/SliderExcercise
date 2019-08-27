@@ -1,0 +1,26 @@
+<form [formGroup]="manageForm">
+  <div class="form-group">
+    <select formControlName="options" (change)="onChangeControl($event)">
+      <option [value]="control" *ngFor="let control of controls"> {{control}}</option>
+    </select>
+  </div>
+</form>
+
+<form [formGroup]="dynamicForm">
+  <div class="form-group">
+    <label for="name">Name</label>
+    <input type="text" class="form-control" formControlName="name" id="name" placeholder="Name">
+    <!-- <div *ngIf="name.invalid && (name.dirty || name.touched)" class="alert alert-danger">
+      <small *ngIf="name.errors.minlength">Atleast 3 character required</small>
+      <small *ngIf="name.errors.required">Name field is required</small>
+    </div> -->
+  </div>
+
+  <div formArrayName="components" *ngFor="let component of components.controls; let i=index">
+  
+    <input type="component.value" >
+  </div>
+
+
+
+</form>
