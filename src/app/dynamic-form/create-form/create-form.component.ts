@@ -82,7 +82,7 @@ export class CreateFormComponent implements OnInit {
     console.log(this.feilds);
     
     setTimeout(()=>{
-      this.route.navigate(['createform'])
+      this.route.navigate(['dashboard/createform'])
     },2000)
    
 

@@ -9,9 +9,16 @@ import { MainContainerComponent } from './components/container/main-container/ma
 import { FooterComponent } from './components/container/footer/footer.component';
 import { HeaderComponent } from './components/container/header/header.component';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
+import { CarousalModuleModule } from '../carousal-module/carousal-module.module';
+import { DatePipeComponent } from './components/date-pipe/date-pipe.component';
+import { NumberpipeComponent } from './components/numberpipe/numberpipe.component';
+import { DynamicFormModule } from '../dynamic-form/dynamic-form.module';
+import { FormModuleModule } from '../form-module/form-module.module';
 
 @NgModule({
   declarations: [DashboardComponent,
+    DatePipeComponent,
+    NumberpipeComponent,
     HeaderComponent,
     FooterComponent,
     MainContainerComponent,
@@ -20,8 +27,11 @@ import { SignUpComponent } from './components/sign-up/sign-up.component';
   imports: [
     CommonModule,
     FeaturesRoutingModule,
+    CarousalModuleModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    DynamicFormModule,
+    FormModuleModule
   ],
 })
 export class FeaturesModule { }

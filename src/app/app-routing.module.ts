@@ -5,7 +5,7 @@ import { LoginComponent } from './SharedComponents/login/login.component';
 const routes: Routes = [
   {
     path : '',
-    redirectTo : 'dynamicform',
+    redirectTo : 'dashboard',
     pathMatch: 'full'
   },
   {
@@ -16,14 +16,18 @@ const routes: Routes = [
     path: 'login',
     component: LoginComponent
   },
-  {
-    path : 'dynamicform',
-    loadChildren: ()=>  import('./dynamic-form/dynamic-form.module').then(mod => mod.DynamicFormModule)
-  },
-  {
-    path : 'createform',
-    loadChildren: ()=>  import('./form-module/form-module.module').then(mod => mod.FormModuleModule)
-  }
+  // {
+  //   path : 'dynamicform',
+  //   loadChildren: ()=>  import('./dynamic-form/dynamic-form.module').then(mod => mod.DynamicFormModule)
+  // },
+  // {
+  //   path : 'createform',
+  //   loadChildren: ()=>  import('./form-module/form-module.module').then(mod => mod.FormModuleModule)
+  // }
+  // {
+  //   path : 'carousal',
+  //   loadChildren: ()=>  import('./carousal-module/carousal-module.module').then(mod => mod.CarousalModuleModule)
+  // }
 ];
 
 @NgModule({
